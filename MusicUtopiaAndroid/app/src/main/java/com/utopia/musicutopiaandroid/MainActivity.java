@@ -2,24 +2,21 @@ package com.utopia.musicutopiaandroid;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 作者:Created by 简玉锋 on 2017/4/12 12:00
@@ -32,9 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     //底部导航
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
-    //浮动小按钮
-    @BindView(R.id.fab_home)
-    FloatingActionButton floatingBtn;
+
     //选择的导航 默认是第一个
     int lastSelectedPosition = 0;
 
@@ -53,9 +48,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        list = new ArrayList<>();
         bottomNavigationBar.clearAll();//清除
-        bottomNavigationBar.setFab(floatingBtn);
 
         numberBadgeItem = new BadgeItem()
                 .setBorderWidth(4)
@@ -67,36 +61,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "Home").setActiveColorResource(R.color.orange).setBadgeItem(numberBadgeItem))
-                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "Books").setActiveColorResource(R.color.teal))
-                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "Music").setActiveColorResource(R.color.blue))
-                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "Movies & TV").setActiveColorResource(R.color.brown))
-                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "Games").setActiveColorResource(R.color.grey))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").setActiveColorResource(R.color.orange).setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学").setActiveColorResource(R.color.teal))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息").setActiveColorResource(R.color.blue))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友").setActiveColorResource(R.color.brown))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的").setActiveColorResource(R.color.grey))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
-
-    }
-
-    /**
-     * 点击事件
-     * @param v 控件
-     */
-    @OnClick(R.id.fab_home)
-    public void onClick(View v){
-        int id = v.getId();
-        switch (id){
-            case R.id.fab_home:
-                final Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Fab Clicked", Snackbar.LENGTH_LONG);
-                snackbar.setAction("dismiss", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        snackbar.dismiss();
-                    }
-                });
-                snackbar.show();
-                break;
-        }
+        onTabSelected(lastSelectedPosition);
     }
 
     /**
@@ -110,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     }
     @Override
     public void onTabSelected(int position) {
-        Log.e(TAG, "onTabSelected: " +position );
-        Snackbar.make(bottomNavigationBar,""+position,Snackbar.LENGTH_SHORT).show();
-
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         /**
