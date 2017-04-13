@@ -53,19 +53,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         numberBadgeItem = new BadgeItem()
                 .setBorderWidth(4)
-                .setBackgroundColorResource(R.color.colorAccent)
+                .setBackgroundColorResource(R.color.nav_bg)
                 .setText("99")
                 .setHideOnSelect(false);
         bottomNavigationBar
-                .setMode(BottomNavigationBar.MODE_FIXED);
+                .setMode(BottomNavigationBar.MODE_FIXED).setBarBackgroundColor(R.color.nav_bg);
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").setActiveColorResource(R.color.orange).setBadgeItem(numberBadgeItem))
-                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学").setActiveColorResource(R.color.teal))
-                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息").setActiveColorResource(R.color.blue))
-                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友").setActiveColorResource(R.color.brown))
-                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的").setActiveColorResource(R.color.grey))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").setActiveColorResource(R.color.nav_select).
+                        setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的").setActiveColorResource(R.color.colorPrimary))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
