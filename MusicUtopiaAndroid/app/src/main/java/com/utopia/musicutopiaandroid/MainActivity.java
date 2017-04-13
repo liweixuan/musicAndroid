@@ -53,20 +53,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         numberBadgeItem = new BadgeItem()
                 .setBorderWidth(4)
-                .setBackgroundColorResource(R.color.nav_bg)
+                .setBackgroundColorResource(android.R.color.holo_red_light)
                 .setText("99")
                 .setHideOnSelect(false);
         bottomNavigationBar
-                .setMode(BottomNavigationBar.MODE_FIXED).setBarBackgroundColor(R.color.nav_bg);
+                .setMode(BottomNavigationBar.MODE_FIXED).setBarBackgroundColor(R.color.nav_bg).setInActiveColor(R.color.nav_normal)
+        .setActiveColor(R.color.nav_select);
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").setActiveColorResource(R.color.nav_select).
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").
                         setBadgeItem(numberBadgeItem))
-                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学").setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息").setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友").setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的"))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
