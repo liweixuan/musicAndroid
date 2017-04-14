@@ -49,18 +49,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         list = new ArrayList<>();
+        initBottomNavBar();
+    }
+    //初始化导航栏
+    private void initBottomNavBar() {
         bottomNavigationBar.clearAll();//清除
-
+        //未读消息
         numberBadgeItem = new BadgeItem()
                 .setBorderWidth(4)
                 .setBackgroundColorResource(android.R.color.holo_red_light)
                 .setText("99")
                 .setHideOnSelect(false);
+        //设置导航栏的模式和状态
         bottomNavigationBar
                 .setMode(BottomNavigationBar.MODE_FIXED).setBarBackgroundColor(R.color.nav_bg).setInActiveColor(R.color.nav_normal)
         .setActiveColor(R.color.nav_select);
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        //添加导航栏的每一项
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").
                         setBadgeItem(numberBadgeItem))
@@ -70,7 +76,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的"))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise();
+        //设置导航栏的点击监听
         bottomNavigationBar.setTabSelectedListener(this);
+        //初始化第一次显示的导航栏
         onTabSelected(lastSelectedPosition);
     }
 
@@ -142,9 +150,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 break;
         }
         transaction.commit();
-
-
-
     }
 
     @Override
