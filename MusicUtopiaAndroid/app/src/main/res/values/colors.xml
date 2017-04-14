@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#fff</color>
+    <color name="colorAccent">#2237c2</color>
 
     <!--导航栏的颜色-->
     <color name="nav_select">#fff</color>

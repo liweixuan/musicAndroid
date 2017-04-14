@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -16,14 +14,12 @@ import butterknife.ButterKnife;
  * 邮箱: jianyufeng@38.hn
  */
 public class MyFragment extends Fragment {
-    @BindView(R.id.tv)
-    TextView tv;
-    private String title;
+
 
     public static MyFragment getInstance(String title) {
 
         MyFragment sInstance = new MyFragment();
-        sInstance.title = title;
+
         return sInstance;
     }
 
@@ -38,6 +34,6 @@ public class MyFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv.setText(title);
+
     }
 }
