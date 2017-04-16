@@ -1,22 +1,25 @@
 package com.utopia.musicutopiaandroid;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.utopia.musicutopiaandroid.business.friend.FriendFragment;
+import com.utopia.musicutopiaandroid.business.interaction.InteractionFragment;
+import com.utopia.musicutopiaandroid.business.message.MessageFragment;
+import com.utopia.musicutopiaandroid.business.my.MyFragment;
+import com.utopia.musicutopiaandroid.business.teach.TeachFragment;
+import com.utopia.musicutopiaandroid.framework.base.activity.SuperAppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 作者:Created by 简玉锋 on 2017/4/12 12:00
@@ -24,12 +27,13 @@ import butterknife.ButterKnife;
  * 主界面
  */
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
-    private static final String TAG = "MainActivity";
+public class MainActivity extends SuperAppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
     //底部导航
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
 
+
+    FragmentManager fm =null;
     //选择的导航 默认是第一个
     int lastSelectedPosition = 0;
 
@@ -37,20 +41,56 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private BadgeItem numberBadgeItem;
 
     private List<Fragment> list;
-    private InteractionFragment interactionFragment;
-    private TeachFragment teachFragment;
-    private MessageFragment messageFragment;
-    private FriendFragment friendFragment;
-    private MyFragment myFragment;
+//    private InteractionFragment interactionFragment;
+//    private TeachFragment teachFragment;
+//    private MessageFragment messageFragment;
+//    private FriendFragment friendFragment;
+//    private MyFragment myFragment;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected void initConfig() {
+         Class[] mFragments = new Class[]{
+                InteractionFragment.class,
+                TeachFragment.class,
+                MessageFragment.class,
+                FriendFragment.class,
+                MyFragment.class,};
         list = new ArrayList<>();
-        initBottomNavBar();
+        for (int i = 0; i < mFragments.length; i++) {
+            list.add( Fragment.instantiate(this, mFragments[i].getName()));
+        }
+//        interactionFragment = (InteractionFragment) Fragment.instantiate(this, InteractionFragment.class.getName());
+//        teachFragment = (TeachFragment) Fragment.instantiate(this, TeachFragment.class.getName());
+//        messageFragment = (MessageFragment) Fragment.instantiate(this, MessageFragment.class.getName());
+//        friendFragment = (FriendFragment) Fragment.instantiate(this, FriendFragment.class.getName());
+//        myFragment = (MyFragment) Fragment.instantiate(this, MyFragment.class.getName());
+        fm = getSupportFragmentManager();
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.main_activity;
+    }
+
+    @Override
+    public int getTitleLayout() {
+        return -1;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        initBottomNavBar();//初始化导航栏
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void processLogic(Bundle savedInstanceState) {
+    }
+
     //初始化导航栏
     private void initBottomNavBar() {
         bottomNavigationBar.clearAll();//清除
@@ -63,103 +103,57 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         //设置导航栏的模式和状态
         bottomNavigationBar
                 .setMode(BottomNavigationBar.MODE_FIXED).setBarBackgroundColor(R.color.nav_bg).setInActiveColor(R.color.nav_normal)
-        .setActiveColor(R.color.nav_select);
+                .setActiveColor(R.color.nav_select);
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         //添加导航栏的每一项
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "互动").
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, R.string.main_botm_nav_interaction).
                         setBadgeItem(numberBadgeItem))
-                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "教学"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "消息"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "好友"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, "我的"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, R.string.main_botm_nav_teach))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, R.string.main_botm_nav_message))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, R.string.main_botm_nav_friend))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videogame_asset_white_24dp, R.string.main_botm_nav_my))
                 .setFirstSelectedPosition(lastSelectedPosition)
                 .initialise();
         //设置导航栏的点击监听
         bottomNavigationBar.setTabSelectedListener(this);
         //初始化第一次显示的导航栏
-        onTabSelected(lastSelectedPosition);
+        fm.beginTransaction().add(R.id.layFrame,list.get(lastSelectedPosition)).commit();
     }
 
-    /**
-     * 隐藏所有正在显示的Fragment
-     * @param transaction
-     */
-    public void hideFragment(FragmentTransaction transaction) {
-        for (Fragment fragment : list) {
-            transaction.hide(fragment);
+    //切换 fragment
+    public void switchFragment(int last, int select) {
+        if (last != select) {
+            Fragment from = list.get(last);
+            Fragment to = list.get(select);
+            FragmentTransaction transaction = fm.beginTransaction().setCustomAnimations(
+                    android.R.anim.fade_in, android.R.anim.fade_out);
+            if (!to.isAdded()) {    // 先判断是否被add过
+                transaction.hide(from).add(R.id.layFrame, to).commit(); // 隐藏当前的fragment，add下一个到Activity中
+            } else {
+                transaction.hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
+            }
         }
     }
     @Override
     public void onTabSelected(int position) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
         /**
          *每次添加之前隐藏所有正在显示的Fragment
          *然后如果是第一次添加的话使用transaction.add();
          *但第二次显示的时候,使用transaction.show();
          *这样子我们就可以保存Fragment的状态了
          */
-        hideFragment(transaction);
-        switch (position) {
-            case 0:
-                if (interactionFragment == null) {
-                    interactionFragment =  InteractionFragment.getInstance("互动");
-                    transaction.add(R.id.layFrame, interactionFragment);
-                    list.add(interactionFragment);
-                } else {
-                    transaction.show(interactionFragment);
-                }
-                break;
-            case 1:
-                if (teachFragment == null) {
-                    teachFragment = TeachFragment.getInstance("教学");
-                    transaction.add(R.id.layFrame, teachFragment);
-                    list.add(teachFragment);
-                } else {
-                    transaction.show(teachFragment);
-                }
-                break;
-            case 2:
-                if (messageFragment == null) {
-                    messageFragment = MessageFragment.getInstance("消息");
-                    transaction.add(R.id.layFrame, messageFragment);
-                    list.add(messageFragment);
-                } else {
-                    transaction.show(messageFragment);
-                }
-                break;
-            case 3:
-                if (friendFragment == null) {
-                    friendFragment = FriendFragment.getInstance("好友");
-                    transaction.add(R.id.layFrame, friendFragment);
-                    list.add(friendFragment);
-                } else {
-                    transaction.show(friendFragment);
-                }
-                break;
-            case 4:
-                if (myFragment == null) {
-                    myFragment = MyFragment.getInstance("好友");
-                    transaction.add(R.id.layFrame, myFragment);
-                    list.add(myFragment);
-                } else {
-                    transaction.show(myFragment);
-                }
-                break;
-        }
-        transaction.commit();
+        switchFragment(lastSelectedPosition,position);
+        lastSelectedPosition = position;
     }
-
     @Override
     public void onTabUnselected(int position) {
-        Log.e(TAG, "onTabUnselected: "+position );
+        Log.e(TAG, "onTabUnselected: " + position);
     }
-
     @Override
     public void onTabReselected(int position) {
-        Log.e(TAG, "onTabReselected: "+position );
+        Log.e(TAG, "onTabReselected: " + position);
 
     }
 }

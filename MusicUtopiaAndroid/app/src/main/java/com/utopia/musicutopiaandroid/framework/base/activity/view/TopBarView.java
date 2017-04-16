@@ -1,4 +1,4 @@
-package com.utopia.musicutopiaandroid.framework.activity.view;
+package com.utopia.musicutopiaandroid.framework.base.activity.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
