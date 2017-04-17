@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/top_nav_layout"
+        style="@style/AutoMatch.Horizontal"
+    >
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="动态"
+            android:textColor="@color/inter_fg_nav_text_color"
+            android:textSize="18sp"
+            android:typeface="sans"/>
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="伙伴"
+            android:textColor="@color/inter_fg_nav_text_color"
+            android:textSize="18sp"
+            android:typeface="monospace"/>
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="团体"
+            android:textColor="@color/inter_fg_nav_text_color"
+            android:textSize="18sp"
+            android:typeface="normal"/>
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="比赛"
+            android:textColor="@color/inter_fg_nav_text_color"
+            android:textSize="18sp"
+            android:typeface="serif"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="5dp"
+        android:layout_height="30dp"
+        android:background="#000"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#49d919"/>
+
+
+</LinearLayout>
