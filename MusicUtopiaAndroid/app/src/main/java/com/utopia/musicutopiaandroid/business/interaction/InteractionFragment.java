@@ -1,27 +1,19 @@
 package com.utopia.musicutopiaandroid.business.interaction;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
 
 import com.utopia.musicutopiaandroid.R;
 import com.utopia.musicutopiaandroid.framework.base.fragment.BaseFragment;
-import com.utopia.musicutopiaandroid.framework.comm.util.ThreadUtil;
-import com.utopia.musicutopiaandroid.framework.comm.util.ToastUtil;
-
-import butterknife.BindView;
-import cn.bingoogolapple.refreshlayout.BGAMeiTuanRefreshViewHolder;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
  * 作者:Created by 简玉锋 on 2017/4/12 17:07
  * 邮箱: jianyufeng@38.hn
  */
-public class InteractionFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
-    @BindView(R.id.refresh_ly)
-    BGARefreshLayout mRefreshLayout;
-    @BindView(R.id.lv)
-    ListView lv;
+public class InteractionFragment extends BaseFragment  {
+//    @BindView(R.id.refresh_ly)
+//    BGARefreshLayout mRefreshLayout;
+//    @BindView(R.id.lv)
+//    ListView lv;
 
     @Override
     protected int getLayoutId() {
@@ -37,17 +29,18 @@ public class InteractionFragment extends BaseFragment implements BGARefreshLayou
     protected void initView(Bundle savedInstanceState) {
 
 
+
     }
 
     @Override
     protected void setListener() {
-        mRefreshLayout.setDelegate(this);
-        mRefreshLayout.setRefreshScaleDelegate(new BGARefreshLayout.BGARefreshScaleDelegate() {
-            @Override
-            public void onRefreshScaleChanged(float scale, int moveYDistance) {
-                Log.i(TAG, "scale:" + scale + " moveYDistance:" + moveYDistance);
-            }
-        });
+//        mRefreshLayout.setDelegate(this);
+//        mRefreshLayout.setRefreshScaleDelegate(new BGARefreshLayout.BGARefreshScaleDelegate() {
+//            @Override
+//            public void onRefreshScaleChanged(float scale, int moveYDistance) {
+//                Log.i(TAG, "scale:" + scale + " moveYDistance:" + moveYDistance);
+//            }
+//        });
     }
 
     @Override
@@ -63,11 +56,11 @@ public class InteractionFragment extends BaseFragment implements BGARefreshLayou
 //        stickinessRefreshViewHolder.setRotateImage(R.mipmap.ic_launcher);
 //        mRefreshLayout.setRefreshViewHolder(stickinessRefreshViewHolder);
 
-        BGAMeiTuanRefreshViewHolder meiTuanRefreshViewHolder = new BGAMeiTuanRefreshViewHolder(mApp, true);
-        meiTuanRefreshViewHolder.setPullDownImageResource(R.drawable.bga_refresh_mt_pull_down);
-        meiTuanRefreshViewHolder.setChangeToReleaseRefreshAnimResId(R.drawable.bga_refresh_mt_change_to_release_refresh);
-        meiTuanRefreshViewHolder.setRefreshingAnimResId(R.drawable.bga_refresh_mt_refreshing);
-        mRefreshLayout.setRefreshViewHolder(meiTuanRefreshViewHolder);
+//        BGAMeiTuanRefreshViewHolder meiTuanRefreshViewHolder = new BGAMeiTuanRefreshViewHolder(mApp, true);
+//        meiTuanRefreshViewHolder.setPullDownImageResource(R.drawable.bga_refresh_mt_pull_down);
+//        meiTuanRefreshViewHolder.setChangeToReleaseRefreshAnimResId(R.drawable.bga_refresh_mt_change_to_release_refresh);
+//        meiTuanRefreshViewHolder.setRefreshingAnimResId(R.drawable.bga_refresh_mt_refreshing);
+//        mRefreshLayout.setRefreshViewHolder(meiTuanRefreshViewHolder);
 
     }
 
@@ -77,28 +70,28 @@ public class InteractionFragment extends BaseFragment implements BGARefreshLayou
 
     }
 
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(final BGARefreshLayout refreshLayout) {
-        ThreadUtil.runInUIThread(new Runnable() {
-           @Override
-            public void run() {
-               ToastUtil.show("刷新完毕");
-                mRefreshLayout.endRefreshing();
-            }
-        },3000);
-    }
-
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-
-
-        ThreadUtil.runInUIThread(new Runnable() {
-            @Override
-            public void run() {
-                ToastUtil.show("加载完毕");
-                mRefreshLayout.endLoadingMore();
-            }
-        },3000);
-            return true;
-    }
+//    @Override
+//    public void onBGARefreshLayoutBeginRefreshing(final BGARefreshLayout refreshLayout) {
+//        ThreadUtil.runInUIThread(new Runnable() {
+//           @Override
+//            public void run() {
+//               ToastUtil.show("刷新完毕");
+//                mRefreshLayout.endRefreshing();
+//            }
+//        },3000);
+//    }
+//
+//    @Override
+//    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+//
+//
+//        ThreadUtil.runInUIThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                ToastUtil.show("加载完毕");
+//                mRefreshLayout.endLoadingMore();
+//            }
+//        },3000);
+//            return true;
+//    }
 }
