@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.utopia.musicutopiaandroid.R;
@@ -40,7 +41,7 @@ public class InteractionFragment extends BaseFragment {
 
     private ArrayList<Fragment> fragmentList;
     private int currIndex = 0;//当前页卡编号
-
+    private int  offsetWidth =0;
 
     @Override
     protected int getLayoutId() {
@@ -90,6 +91,20 @@ public class InteractionFragment extends BaseFragment {
 //        mRefreshLayout.setRefreshViewHolder(meiTuanRefreshViewHolder);
 //        mViewPAger.setAdapter();
         InitViewPager();
+        setIndictorWidth();
+    }
+    //设置indictor指示器的宽度
+    private void setIndictorWidth() {
+        final View v=getViewById(R.id.top_nav_layout);
+        v.post(new Runnable() {
+            @Override
+            public void run() {
+               int  width = v.getWidth()/4;
+                ViewGroup.LayoutParams lp = indictor.getLayoutParams();
+                offsetWidth=lp.width = width;
+                indictor.setLayoutParams(lp);
+            }
+        });
     }
 
     @Override
@@ -164,19 +179,20 @@ public class InteractionFragment extends BaseFragment {
     //处理ViewPager的滑动
     class PageChangeListener implements ViewPager.OnPageChangeListener {
 
+
+
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            //指示器滑动
+            indictor.setTranslationX((offsetWidth) * (positionOffset + position));
         }
 
         @Override
         public void onPageSelected(int position) {
-
         }
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     }
 

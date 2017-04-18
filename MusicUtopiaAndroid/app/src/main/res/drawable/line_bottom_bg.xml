@@ -11,7 +11,7 @@
             <!--android:bottomRightRadius="5dp" />-->
             <stroke
                 android:width="1px"
-                android:color="#bebdbd" />
+                android:color="#03000000" />
         </shape>
     </item>
     <!--
@@ -24,14 +24,59 @@
      而top没有缩小，所以覆盖了上面一个item的边框的上边框。
     所以这个item叠加上面一个item之后的效果就是一个只含左、右、下灰色边框，下面带圆角，上面不带圆角的白色背景矩形
  -->
-    <item android:bottom="1px">
+    <item android:bottom="2px">
         <!--android:left="1px"-->
         <!--android:right="1px"-->
         <shape>
             <!--<corners-->
             <!--android:bottomLeftRadius="5dp"-->
             <!--android:bottomRightRadius="5dp" />-->
-            <solid android:color="@android:color/white" />
+            <solid android:color="#05000000" />
+        </shape>
+    </item>
+    <item android:bottom="3px">
+        <shape>
+            <solid android:color="#07000000"/>
+        </shape>
+    </item>
+    <item android:bottom="4px">
+        <shape>
+            <solid android:color="#09000000" />
+        </shape>
+    </item>
+    <item android:bottom="5px">
+        <shape>
+            <solid android:color="#10000000" />
+        </shape>
+    </item>
+    <item android:bottom="6px">
+        <shape>
+            <solid android:color="#13000000" />
+        </shape>
+    </item>
+    <item android:bottom="7px">
+        <shape>
+            <solid android:color="#16000000" />
+        </shape>
+    </item>
+    <item android:bottom="8px">
+        <shape>
+            <solid android:color="#20000000" />
+        </shape>
+    </item>
+    <item android:bottom="9px">
+        <shape>
+            <solid android:color="#25000000" />
+        </shape>
+    </item>
+    <item android:bottom="10px">
+        <shape>
+            <solid android:color="#28000000" />
+        </shape>
+    </item>
+    <item android:bottom="10px">
+        <shape>
+            <solid android:color="#fff" />
         </shape>
     </item>
 </layer-list>
