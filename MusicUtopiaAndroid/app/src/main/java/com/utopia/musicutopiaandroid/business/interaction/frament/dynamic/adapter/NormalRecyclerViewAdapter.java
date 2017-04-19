@@ -31,4 +31,9 @@ public class NormalRecyclerViewAdapter extends BGARecyclerViewAdapter<RefreshMod
 
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
 }

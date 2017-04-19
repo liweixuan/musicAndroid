@@ -62,6 +62,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         mAdapter.setOnItemChildClickListener(this);
         mAdapter.setOnItemChildLongClickListener(this);
 
+
     }
 
     @Override
