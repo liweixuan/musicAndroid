@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
@@ -25,11 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.bingoogolapple.androidcommon.adapter.BGAGridDivider;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildLongClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener;
 import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
@@ -39,7 +33,7 @@ import static com.utopia.musicutopiaandroid.R.id.refreshLayout;
  * Created by Administrator on 2017/4/18/018.
  */
 
-public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener, BGAOnRVItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener {
+public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
     @BindView(refreshLayout)
      BGARefreshLayout mRefreshLayout;
     @BindView(R.id.recycler_view)
@@ -83,7 +77,6 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         moocStyleRefreshViewHolder.setLoadingMoreText("你说sfd");
         moocStyleRefreshViewHolder.setLoadMoreBackgroundColorRes(R.color.colorPrimary);
         mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
-        mContain.addItemDecoration(BGAGridDivider.newInstanceWithSpaceRes(R.dimen.bga_adapter_divider_size));
         mContain.setLayoutManager(new GridLayoutManager(mApp, 2, GridLayoutManager.VERTICAL, false));
 //        mDataRv.setLayoutManager(new LinearLayoutManager(mApp, LinearLayoutManager.VERTICAL, false));
 //        mContain.setAdapter(mAdapter1);
@@ -184,28 +177,9 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         return true;
     }
 
-    @Override
-    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        ToastUtil.show("onRVItemClick");
-    }
 
-    @Override
-    public boolean onRVItemLongClick(ViewGroup parent, View itemView, int position) {
-        ToastUtil.show("onRVItemLongClick");
 
-        return false;
-    }
 
-    @Override
-    public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        ToastUtil.show("onItemChildClick");
 
-    }
 
-    @Override
-    public boolean onItemChildLongClick(ViewGroup parent, View childView, int position) {
-        ToastUtil.show("onItemChildLongClick");
-
-        return false;
-    }
 }
