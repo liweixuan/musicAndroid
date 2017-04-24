@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -26,6 +27,10 @@ import java.util.List;
 import butterknife.BindView;
 import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.utopia.musicutopiaandroid.R.id.refreshLayout;
 
@@ -140,6 +145,19 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
 
 
     List<RefreshModel>  getDates(){
+        Call<ResponseBody> call =mApp.getEngine().contributorsBySimpleGetCall("","");
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d(TAG, "onResponse: "+response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+        call.cancel();//取消
         List<RefreshModel> s = new ArrayList<>() ;
         for (int i = 0; i < 4; i++) {
             s.add(new RefreshModel("item"+i,"夏:::"+i,i));
