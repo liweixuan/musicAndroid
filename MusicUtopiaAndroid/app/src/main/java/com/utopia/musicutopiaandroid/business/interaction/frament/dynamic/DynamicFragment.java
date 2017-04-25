@@ -43,6 +43,8 @@ import static com.utopia.musicutopiaandroid.R.id.refreshLayout;
  * Created by Administrator on 2017/4/18/018.
  *
  *  compile 'com.zhy:okhttputils:2.6.2'
+ *
+ *  http://blog.csdn.net/fancylovejava/article/details/45787729/
  */
 
 public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
