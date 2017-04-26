@@ -49,6 +49,7 @@ public class MainActivity extends SuperAppCompatActivity implements BottomNaviga
 
     @Override
     protected void initConfig() {
+
          Class[] mFragments = new Class[]{
                 InteractionFragment.class,
                 TeachFragment.class,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch.Vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/holo_orange_light">
 
     <include layout="@layout/interaction_fragment_top_nav" />
 

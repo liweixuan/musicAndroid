@@ -5,5 +5,5 @@
     <TextView
         style="@style/MatchMatch" android:gravity="center"
         android:text="伙伴"
-        android:background="#f0f"/>
+        android:background="#FFE2E4FC"/>
 </LinearLayout>
