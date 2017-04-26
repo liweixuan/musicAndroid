@@ -1,18 +1,19 @@
 package com.utopia.musicutopiaandroid.business.interaction.frament.dynamic;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.utopia.musicutopiaandroid.R;
 import com.utopia.musicutopiaandroid.framework.base.fragment.BaseFragment;
-import com.utopia.musicutopiaandroid.framework.comm.util.ToastUtil;
 import com.utopia.musicutopiaandroid.threeframe.adapter.AbsAdapter;
 
 import butterknife.BindView;
-import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
+import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static com.utopia.musicutopiaandroid.R.id.refreshLayout;
@@ -59,30 +60,23 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
 
     @Override
     protected void processLogic(Bundle savedInstanceState) {   // 流程逻辑 处理
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(mApp, true);
-        moocStyleRefreshViewHolder.setOriginalImage(R.drawable.ic_book_white_24dp);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.blue_btn_bg_color);
-        moocStyleRefreshViewHolder.setLoadingMoreText("你说sfd");
-        moocStyleRefreshViewHolder.setLoadMoreBackgroundColorRes(R.color.colorPrimary);
+        BGANormalRefreshViewHolder moocStyleRefreshViewHolder = new BGANormalRefreshViewHolder(mApp, true);
         mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
-        mContain.setLayoutManager(new GridLayoutManager(mApp, 2, GridLayoutManager.VERTICAL, false));
-//        mDataRv.setLayoutManager(new LinearLayoutManager(mApp, LinearLayoutManager.VERTICAL, false));
-//        mContain.setAdapter(mAdapter1);
+        mContain.setLayoutManager(new LinearLayoutManager(mApp, LinearLayoutManager.VERTICAL, false));
+        mAdapter = new AbsAdapter(null,R.layout.text1) {
+            @Override
+            protected void convert(BaseViewHolder baseViewHolder, MultiItemEntity multiItemEntity) {
+
+            }
+        };
         mAdapter.setDuration(1500);
         mAdapter.setEmptyView(true, true, View.inflate(getContext(), R.layout.text, null));
-        mAdapter.openLoadMore(true);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
         mAdapter.addHeaderView(View.inflate(getContext(), R.layout.text1, null));
         mAdapter.addHeaderView(View.inflate(getContext(), R.layout.text3, null));
         mAdapter.addFooterView(View.inflate(getContext(), R.layout.text3, null));
         mAdapter.addFooterView(View.inflate(getContext(), R.layout.text, null));
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                ToastUtil.show("1111111111111111");
-            }
-        });
-
+        mContain.setAdapter(mAdapter);
     }
 
     //下拉刷新回调
