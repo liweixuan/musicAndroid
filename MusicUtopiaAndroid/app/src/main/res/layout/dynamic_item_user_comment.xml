@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:background="@android:color/white"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center">
+        <ImageView android:layout_width="10dp"
+                   android:layout_height="10dp"
+                   android:layout_marginRight="5dp"
+
+                   android:src="#f0f"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="评价  (9999)"
+                  android:textColor="#999"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center">
+        <ImageView android:layout_width="10dp"
+                   android:layout_height="10dp"
+                   android:layout_marginRight="5dp"
+
+                   android:src="#ff0"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="999"
+                  android:textColor="#999"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center">
+        <ImageView android:layout_width="10dp"
+                   android:layout_height="10dp"
+                   android:layout_marginRight="5dp"
+                   android:src="#f0f"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="关注"
+                  android:textColor="#999"/>
+    </LinearLayout>
+
+
+</LinearLayout>

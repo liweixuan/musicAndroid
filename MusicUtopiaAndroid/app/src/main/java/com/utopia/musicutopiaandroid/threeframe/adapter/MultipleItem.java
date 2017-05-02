@@ -4,9 +4,8 @@ package com.utopia.musicutopiaandroid.threeframe.adapter;
  * Created by Administrator on 2017/4/21/021.
  */
 
-class MultipleItem {
+public class MultipleItem {
     private int type;
-    private int layoutResId;
 
     public int getType() {
         return type;
@@ -21,6 +20,13 @@ class MultipleItem {
     }
 
     public void setLayoutResId(int layoutResId) {
+        this.layoutResId = layoutResId;
+    }
+
+    private int layoutResId;
+
+    public MultipleItem(int type, int layoutResId) {
+        this.type = type;
         this.layoutResId = layoutResId;
     }
 }

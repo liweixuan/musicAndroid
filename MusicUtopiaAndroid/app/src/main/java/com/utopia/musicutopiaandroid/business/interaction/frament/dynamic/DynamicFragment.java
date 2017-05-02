@@ -5,12 +5,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.utopia.musicutopiaandroid.R;
+import com.utopia.musicutopiaandroid.business.interaction.adapter.ItemType;
+import com.utopia.musicutopiaandroid.business.interaction.bean.DynamicBean;
 import com.utopia.musicutopiaandroid.framework.base.fragment.BaseFragment;
 import com.utopia.musicutopiaandroid.threeframe.adapter.AbsAdapter;
+import com.utopia.musicutopiaandroid.threeframe.adapter.MultipleItem;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
@@ -55,34 +59,33 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     protected void setListener() {  //设置控件的监听事件    在 initView 之后调用
         //设置刷新和上拉监听
         mRefreshLayout.setDelegate(this);
-
     }
-
     @Override
     protected void processLogic(Bundle savedInstanceState) {   // 流程逻辑 处理
         BGANormalRefreshViewHolder moocStyleRefreshViewHolder = new BGANormalRefreshViewHolder(mApp, true);
         mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
         mContain.setLayoutManager(new LinearLayoutManager(mApp, LinearLayoutManager.VERTICAL, false));
-        mAdapter = new AbsAdapter(null,R.layout.text1) {
+
+        //添加适配器的类型
+        mAdapter = new AbsAdapter(null, new MultipleItem(ItemType.type_text,R.layout.dynamic_item_normal)) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, MultiItemEntity multiItemEntity) {
 
+
             }
         };
-        mAdapter.setDuration(1500);
         mAdapter.setEmptyView(true, true, View.inflate(getContext(), R.layout.text, null));
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
-        mAdapter.addHeaderView(View.inflate(getContext(), R.layout.text1, null));
-        mAdapter.addHeaderView(View.inflate(getContext(), R.layout.text3, null));
-        mAdapter.addFooterView(View.inflate(getContext(), R.layout.text3, null));
-        mAdapter.addFooterView(View.inflate(getContext(), R.layout.text, null));
         mContain.setAdapter(mAdapter);
     }
 
     //下拉刷新回调
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-
+        ArrayList<DynamicBean> data = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            data.add(new DynamicBean("name:"+i));
+        }
+        mAdapter.addData(data);
         //回调完成
         mRefreshLayout.endRefreshing();
 

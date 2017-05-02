@@ -1,6 +1,7 @@
 package com.utopia.musicutopiaandroid.threeframe.adapter;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.utopia.musicutopiaandroid.R;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.List;
  * Created by Administrator on 2017/4/21/021.
  */
 
-public abstract class AbsAdapter extends BaseMultiItemQuickAdapter {
+public abstract class AbsAdapter<T extends MultiItemEntity> extends BaseMultiItemQuickAdapter {
 
-    public AbsAdapter(List data) {
+    public AbsAdapter(List<T> data) {
         super(data);
 
     }

@@ -61,35 +61,10 @@ public class InteractionFragment extends BaseFragment {
     @Override
     protected void setListener() {
         mViewPAger.addOnPageChangeListener(new PageChangeListener());//页面变化时的监听器
-
-//        mRefreshLayout.setDelegate(this);
-//        mRefreshLayout.setRefreshScaleDelegate(new BGARefreshLayout.BGARefreshScaleDelegate() {
-//            @Override
-//            public void onRefreshScaleChanged(float scale, int moveYDistance) {
-//                Log.i(TAG, "scale:" + scale + " moveYDistance:" + moveYDistance);
-//            }
-//        });
     }
 
     @Override
     protected void processLogic(Bundle savedInstanceState) {
-//        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(mApp, true);
-//        moocStyleRefreshViewHolder.setOriginalImage(R.drawable.ic_book_white_24dp);
-//        moocStyleRefreshViewHolder.setUltimateColor(R.color.colorAccent);
-//        mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
-//        moocStyleRefreshViewHolder.setSpringDistanceScale(0.5f);
-
-//        BGAStickinessRefreshViewHolder stickinessRefreshViewHolder = new BGAStickinessRefreshViewHolder(mApp, true);
-//        stickinessRefreshViewHolder.setStickinessColor(R.color.colorPrimary);
-//        stickinessRefreshViewHolder.setRotateImage(R.mipmap.ic_launcher);
-//        mRefreshLayout.setRefreshViewHolder(stickinessRefreshViewHolder);
-
-//        BGAMeiTuanRefreshViewHolder meiTuanRefreshViewHolder = new BGAMeiTuanRefreshViewHolder(mApp, true);
-//        meiTuanRefreshViewHolder.setPullDownImageResource(R.drawable.bga_refresh_mt_pull_down);
-//        meiTuanRefreshViewHolder.setChangeToReleaseRefreshAnimResId(R.drawable.bga_refresh_mt_change_to_release_refresh);
-//        meiTuanRefreshViewHolder.setRefreshingAnimResId(R.drawable.bga_refresh_mt_refreshing);
-//        mRefreshLayout.setRefreshViewHolder(meiTuanRefreshViewHolder);
-//        mViewPAger.setAdapter();
         InitViewPager();
         setIndictorWidth();
     }
@@ -112,31 +87,6 @@ public class InteractionFragment extends BaseFragment {
         super.onLazyLoadOnce();
 
     }
-
-    //    @Override
-//    public void onBGARefreshLayoutBeginRefreshing(final BGARefreshLayout refreshLayout) {
-//        ThreadUtil.runInUIThread(new Runnable() {
-//           @Override
-//            public void run() {
-//               ToastUtil.show("刷新完毕");
-//                mRefreshLayout.endRefreshing();
-//            }
-//        },3000);
-//    }
-//
-//    @Override
-//    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-//
-//
-//        ThreadUtil.runInUIThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                ToastUtil.show("加载完毕");
-//                mRefreshLayout.endLoadingMore();
-//            }
-//        },3000);
-//            return true;
-//    }
     /*
      * 初始化ViewPager
      */
@@ -153,7 +103,7 @@ public class InteractionFragment extends BaseFragment {
         mViewPAger.setAdapter(new FragmentVPAdapter(getChildFragmentManager(), fragmentList));
         mViewPAger.setCurrentItem(currIndex);//设置当前显示标签页为第一页
     }
-
+    //导航栏点击事件
     @OnClick({R.id.dynamic_tv, R.id.partner_tv, R.id.organize_tv, R.id.match_tv})
      void onClick(View v) {
         int id = v.getId();
