@@ -57,6 +57,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         //设置刷新和上拉监听
         mRefreshLayout.setDelegate(this);
     }
+
     @Override
     protected void processLogic(Bundle savedInstanceState) {   // 流程逻辑 处理
         BGANormalRefreshViewHolder moocStyleRefreshViewHolder = new BGANormalRefreshViewHolder(mApp, true);
@@ -73,9 +74,12 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         ArrayList<DynamicBean> data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            data.add(new DynamicBean("name:"+i,i%2==0 ? ItemType.type_text:ItemType.type_tex_img));
-        }
+        data.add(new DynamicBean("name:1", ItemType.type_text));
+        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+        data.add(new DynamicBean("name:1", ItemType.type_text));
+        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
         mAdapter.addData(data);
         //回调完成
         mRefreshLayout.endRefreshing();

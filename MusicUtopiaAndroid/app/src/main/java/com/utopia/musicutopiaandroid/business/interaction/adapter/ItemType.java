@@ -9,4 +9,5 @@ public class   ItemType {
     public static final int type_text = 0;
     public static final int type_img = 1;
     public static final int type_tex_img = 2;
+    public static final int type_tex_img9 = 3;
 }
