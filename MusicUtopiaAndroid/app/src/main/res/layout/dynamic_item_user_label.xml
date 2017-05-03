@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@android:color/white"
-              android:layout_marginTop="10dp"
-              android:layout_marginBottom="10dp"
-              android:orientation="horizontal">
-
-    <TextView style="@style/WrapWrap"
-              android:background="@drawable/select_round_btn_blue"
-              android:textColor="@android:color/white"
-              android:text="标签"/>
-</LinearLayout>
+<com.utopia.musicutopiaandroid.framework.ui.RZFlowLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rz_container_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
+    android:background="@android:color/white">
+</com.utopia.musicutopiaandroid.framework.ui.RZFlowLayout>

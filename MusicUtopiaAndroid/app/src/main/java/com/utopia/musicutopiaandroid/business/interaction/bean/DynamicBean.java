@@ -8,14 +8,9 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
  */
 
 public class DynamicBean extends MultiItemEntity {
-    public DynamicBean(String name) {
+    public DynamicBean(String name,int type) {
         this.name = name;
+        this.itemType = type;
     }
-
     private String name;
-
-    @Override
-    public int getItemType() {
-        return 0;
-    }
 }

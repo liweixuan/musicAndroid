@@ -5,14 +5,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.utopia.musicutopiaandroid.R;
+import com.utopia.musicutopiaandroid.business.interaction.adapter.DynamicAdapter;
 import com.utopia.musicutopiaandroid.business.interaction.adapter.ItemType;
 import com.utopia.musicutopiaandroid.business.interaction.bean.DynamicBean;
 import com.utopia.musicutopiaandroid.framework.base.fragment.BaseFragment;
-import com.utopia.musicutopiaandroid.threeframe.adapter.AbsAdapter;
-import com.utopia.musicutopiaandroid.threeframe.adapter.MultipleItem;
 
 import java.util.ArrayList;
 
@@ -37,7 +34,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
 
     @BindView(R.id.recycler_view)
     RecyclerView mContain;      //数据容器
-    private AbsAdapter mAdapter; //数据适配器
+    private DynamicAdapter mAdapter; //数据适配器
 
 
     @Override
@@ -67,13 +64,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         mContain.setLayoutManager(new LinearLayoutManager(mApp, LinearLayoutManager.VERTICAL, false));
 
         //添加适配器的类型
-        mAdapter = new AbsAdapter(null, new MultipleItem(ItemType.type_text,R.layout.dynamic_item_normal)) {
-            @Override
-            protected void convert(BaseViewHolder baseViewHolder, MultiItemEntity multiItemEntity) {
-
-
-            }
-        };
+        mAdapter = new DynamicAdapter(null);
         mAdapter.setEmptyView(true, true, View.inflate(getContext(), R.layout.text, null));
         mContain.setAdapter(mAdapter);
     }
@@ -83,7 +74,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         ArrayList<DynamicBean> data = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            data.add(new DynamicBean("name:"+i));
+            data.add(new DynamicBean("name:"+i,i%2==0 ? ItemType.type_text:ItemType.type_tex_img));
         }
         mAdapter.addData(data);
         //回调完成

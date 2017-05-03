@@ -6,7 +6,7 @@ package com.utopia.musicutopiaandroid.business.interaction.adapter;
  */
 
 public class   ItemType {
-    public static int type_text = 0;
-    public static int type_img = 0;
-    public static int type_tex_img = 0;
+    public static final int type_text = 0;
+    public static final int type_img = 1;
+    public static final int type_tex_img = 2;
 }

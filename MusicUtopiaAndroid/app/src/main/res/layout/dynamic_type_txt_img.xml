@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <TextView
+        android:id="@+id/content_text_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我是文本和一张图片"
+        android:textColor="#666"/>
+    <ImageView android:id="@+id/img_id"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:maxHeight="400dp"
+               android:maxWidth="300dp"
+               android:minHeight="48dp"
+               android:minWidth="48dp"
+               android:src="@mipmap/ic_launcher"/>
+</LinearLayout>
