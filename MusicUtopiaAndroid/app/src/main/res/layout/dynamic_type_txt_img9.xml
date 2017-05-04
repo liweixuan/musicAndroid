@@ -10,7 +10,6 @@
         android:text="我是文本和多张图片"
         android:textColor="#666"/>
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@android:color/darker_gray"

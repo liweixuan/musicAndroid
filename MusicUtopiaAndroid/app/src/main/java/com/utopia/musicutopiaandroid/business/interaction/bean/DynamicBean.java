@@ -28,11 +28,6 @@ public class DynamicBean extends MultiItemEntity {
         imgs.add("123");
         imgs.add("123");
         imgs.add("123");
-        imgs.add("123");
-        imgs.add("123");
-        imgs.add("123");
-        imgs.add("123");
-        imgs.add("123");
         return imgs;
     }
 

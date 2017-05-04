@@ -91,22 +91,23 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     //下拉刷新回调
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        ArrayList<DynamicBean> data = new ArrayList<>();
+        data.add(new DynamicBean("name:1", ItemType.type_text));
+        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+        data.add(new DynamicBean("name:1", ItemType.type_text));
+        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+        mAdapter.setNewData(data);
         //回调完成
         ThreadUtil.runInUIThread(new Runnable() {
             @Override
             public void run() {
                 mRefreshLayout.endRefreshing();
-                ArrayList<DynamicBean> data = new ArrayList<>();
-                data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
-                data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
-                mAdapter.setNewData(data);
+
 
             }
-        },1000);
+        },5000);
 
     }
 
