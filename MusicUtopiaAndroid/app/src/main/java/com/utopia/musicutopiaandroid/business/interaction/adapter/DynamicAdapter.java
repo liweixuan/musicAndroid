@@ -2,23 +2,23 @@ package com.utopia.musicutopiaandroid.business.interaction.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.utopia.musicutopiaandroid.R;
 import com.utopia.musicutopiaandroid.application.App;
 import com.utopia.musicutopiaandroid.business.interaction.bean.DynamicBean;
-import com.utopia.musicutopiaandroid.framework.comm.util.DensityUtil;
+import com.utopia.musicutopiaandroid.framework.ui.LineGridView;
 import com.utopia.musicutopiaandroid.framework.ui.RZFlowLayout;
 
 import java.util.ArrayList;
@@ -67,14 +67,44 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
         //评论点赞处理
         convertComment(baseViewHolder, dynamicBean);
     }
+class ss extends GridLayoutManager{
+    public ss(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        setSmoothScrollbarEnabled(false);
+    }
 
+    public ss(Context context, int spanCount) {
+        super(context, spanCount);
+        setSmoothScrollbarEnabled(false);
+
+    }
+
+    public ss(Context context, int spanCount, int orientation, boolean reverseLayout) {
+        super(context, spanCount, orientation, reverseLayout);
+        setSmoothScrollbarEnabled(false);
+
+    }
+}
     private void convertImages9(BaseViewHolder baseViewHolder, DynamicBean dynamicBean) {
         int spanCount = 4;
         Context context = App.getInstance();
-        RecyclerView recyclerview=baseViewHolder.getView(R.id.recycler_view);
+        LineGridView recyclerview=baseViewHolder.getView(R.id.g);
         ArrayList imgs = dynamicBean.getImgs();
+        recyclerview.setAdapter(new ArrayAdapter<String>(App.getInstance(),-1,imgs){
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                return LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_img,parent,false);
+            }
+        });
+
+
+
+        /*
 //        //每行显示3个，水平显示
-       recyclerview.setLayoutManager(new GridLayoutManager(context,spanCount));
+        GridLayoutManager layout = new ss(context, spanCount, LinearLayoutManager.VERTICAL, false);
+
+        recyclerview.setLayoutManager(layout);
 //        ViewGroup.LayoutParams layoutParams = recyclerview.getLayoutParams();
 //        //计算行数
 //        int lineNumber = imgs.size()%spanCount==0? imgs.size()/spanCount:imgs.size()/spanCount +1;
@@ -88,7 +118,7 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
             protected void convert(BaseViewHolder baseViewHolder, String o) {
 
             }
-        });
+        });*/
 
     }
 

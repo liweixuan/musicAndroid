@@ -3,6 +3,7 @@ package com.utopia.musicutopiaandroid.business.interaction.frament.dynamic;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.utopia.musicutopiaandroid.R;
@@ -10,6 +11,7 @@ import com.utopia.musicutopiaandroid.business.interaction.adapter.DynamicAdapter
 import com.utopia.musicutopiaandroid.business.interaction.adapter.ItemType;
 import com.utopia.musicutopiaandroid.business.interaction.bean.DynamicBean;
 import com.utopia.musicutopiaandroid.framework.base.fragment.BaseFragment;
+import com.utopia.musicutopiaandroid.framework.comm.util.ThreadUtil;
 
 import java.util.ArrayList;
 
@@ -68,32 +70,70 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
         mAdapter = new DynamicAdapter(null);
         mAdapter.setEmptyView(true, true, View.inflate(getContext(), R.layout.text, null));
         mContain.setAdapter(mAdapter);
+        ThreadUtil.runInUIThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.endLoadingMore();
+                ArrayList<DynamicBean> data = new ArrayList<>();
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                mAdapter.addData(data);
+
+            }
+        },1000);
+
     }
 
     //下拉刷新回调
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        ArrayList<DynamicBean> data = new ArrayList<>();
-        data.add(new DynamicBean("name:1", ItemType.type_text));
-        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
-        data.add(new DynamicBean("name:1", ItemType.type_text));
-        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
-        mAdapter.addData(data);
         //回调完成
-        mRefreshLayout.endRefreshing();
+        ThreadUtil.runInUIThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.endRefreshing();
+                ArrayList<DynamicBean> data = new ArrayList<>();
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                mAdapter.setNewData(data);
+
+            }
+        },1000);
 
     }
 
     //上拉加载更多 回调
     @Override
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        Log.e(TAG, "onBGARefreshLayoutBeginLoadingMore: " );
 
-        //回调完成
-        mRefreshLayout.endLoadingMore();
+        //可以上拉返回 true 否则返
+        // 回false
+        ThreadUtil.runInUIThread(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.endLoadingMore();
+                ArrayList<DynamicBean> data = new ArrayList<>();
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:1", ItemType.type_text));
+                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
+//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                mAdapter.addData(data);
 
-        //可以上拉返回 true 否则返回false
+            }
+        },1000);
+
+
         return true;
     }
 
