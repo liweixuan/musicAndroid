@@ -2,14 +2,11 @@ package com.utopia.musicutopiaandroid.business.interaction.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +15,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.utopia.musicutopiaandroid.R;
 import com.utopia.musicutopiaandroid.application.App;
 import com.utopia.musicutopiaandroid.business.interaction.bean.DynamicBean;
-import com.utopia.musicutopiaandroid.framework.ui.LineGridView;
 import com.utopia.musicutopiaandroid.framework.ui.RZFlowLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +30,7 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
     //多种类型的布局
     public DynamicAdapter(List<DynamicBean> data) {
         super(data);
-        addItemType(ItemType.type_text, R.layout.dynamic_item_normal);
+        addItemType(ItemType.type_text, R.layout.dynamic_item_text);
         addItemType(ItemType.type_tex_img, R.layout.dynamic_item_text_img);
         addItemType(ItemType.type_tex_img9, R.layout.dynamic_item_text_img9);
 
@@ -86,39 +81,23 @@ class ss extends GridLayoutManager{
     }
 }
     private void convertImages9(BaseViewHolder baseViewHolder, DynamicBean dynamicBean) {
-        int spanCount = 4;
-        Context context = App.getInstance();
-        LineGridView recyclerview=baseViewHolder.getView(R.id.g);
-        ArrayList imgs = dynamicBean.getImgs();
-        recyclerview.setAdapter(new ArrayAdapter<String>(App.getInstance(),-1,imgs){
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                return LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_img,parent,false);
-            }
-        });
-
-
-
-        /*
-//        //每行显示3个，水平显示
-        GridLayoutManager layout = new ss(context, spanCount, LinearLayoutManager.VERTICAL, false);
-
-        recyclerview.setLayoutManager(layout);
-//        ViewGroup.LayoutParams layoutParams = recyclerview.getLayoutParams();
-//        //计算行数
-//        int lineNumber = imgs.size()%spanCount==0? imgs.size()/spanCount:imgs.size()/spanCount +1;
-//        //计算高度=行数＊每行的高度 ＋(行数－1)＊10dp的margin ＋ 10dp（为了居中）
-//        //因为每行显示4个条目，为了保持正方形，那么高度应该是也是宽度/3
-//        layoutParams.height = lineNumber *(DensityUtil.dip2px(60)) + (lineNumber)*DensityUtil.dip2px(60);
-//        recyclerview.setLayoutParams(layoutParams);
-        recyclerview.setBackgroundResource(R.color.colorPrimary);
-        recyclerview.setAdapter(new BaseQuickAdapter<String>(R.layout.dynamic_img,imgs) {
-            @Override
-            protected void convert(BaseViewHolder baseViewHolder, String o) {
-
-            }
-        });*/
+//        ArrayList imgs = dynamicBean.getImgs(); //获取总数
+//        int totalNum = imgs.size();
+//        if (totalNum==0){
+//            //不显示图片
+//        }else if (totalNum==
+//
+//
+//
+//        Context context = App.getInstance();
+//
+//        recyclerview.setAdapter(new ArrayAdapter<String>(App.getInstance(),-1,imgs){
+//            @NonNull
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                return LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_img,parent,false);
+//            }
+//        });
 
     }
 

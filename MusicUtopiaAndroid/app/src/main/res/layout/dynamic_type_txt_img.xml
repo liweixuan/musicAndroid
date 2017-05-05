@@ -3,12 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <TextView
-        android:id="@+id/content_text_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是文本和一张图片"
-        android:textColor="#666"/>
+    <include layout="@layout/dynamic_type_txt" />
     <ImageView android:id="@+id/img_id"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -17,4 +12,5 @@
                android:minHeight="48dp"
                android:minWidth="48dp"
                android:src="@mipmap/ic_launcher"/>
+    <include layout="@layout/dynamic_item_user_label" />
 </LinearLayout>
