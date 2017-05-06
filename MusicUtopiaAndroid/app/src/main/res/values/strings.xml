@@ -9,4 +9,7 @@
     <string name="main_botm_nav_message">消息</string>
     <string name="main_botm_nav_friend">好友</string>
     <string name="main_botm_nav_my">我的</string>
+
+    <!--互动-->
+    <string name="more_img">+%d</string>
 </resources>

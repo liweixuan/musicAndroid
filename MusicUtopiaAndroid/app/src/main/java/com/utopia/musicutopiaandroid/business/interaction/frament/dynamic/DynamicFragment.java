@@ -76,11 +76,15 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
                 mRefreshLayout.endLoadingMore();
                 ArrayList<DynamicBean> data = new ArrayList<>();
                 data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:2", ItemType.type_text_img));
+                data.add(new DynamicBean("name:2", ItemType.type_text_img));
+                data.add(new DynamicBean("name:2", ItemType.type_text_music));
+                data.add(new DynamicBean("name:2", ItemType.type_text_music));
+                data.add(new DynamicBean("name:2", ItemType.type_text_video));
+                data.add(new DynamicBean("name:3", ItemType.type_text_img));
                 data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//                data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:2", ItemType.type_text));
+                data.add(new DynamicBean("name:3", ItemType.type_text_img));
                 mAdapter.addData(data);
 
             }
@@ -93,11 +97,11 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         ArrayList<DynamicBean> data = new ArrayList<>();
         data.add(new DynamicBean("name:1", ItemType.type_text));
-        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+        data.add(new DynamicBean("name:2", ItemType.type_text));
+        data.add(new DynamicBean("name:3", ItemType.type_text));
         data.add(new DynamicBean("name:1", ItemType.type_text));
-        data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+        data.add(new DynamicBean("name:2", ItemType.type_text));
+        data.add(new DynamicBean("name:3", ItemType.type_text_img));
         mAdapter.setNewData(data);
         //回调完成
         ThreadUtil.runInUIThread(new Runnable() {
@@ -124,11 +128,11 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
                 mRefreshLayout.endLoadingMore();
                 ArrayList<DynamicBean> data = new ArrayList<>();
                 data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:2", ItemType.type_text));
+        data.add(new DynamicBean("name:3", ItemType.type_text_img));
                 data.add(new DynamicBean("name:1", ItemType.type_text));
-                data.add(new DynamicBean("name:2", ItemType.type_tex_img));
-//        data.add(new DynamicBean("name:3", ItemType.type_tex_img9));
+                data.add(new DynamicBean("name:2", ItemType.type_text));
+        data.add(new DynamicBean("name:3", ItemType.type_text_img));
                 mAdapter.addData(data);
 
             }
