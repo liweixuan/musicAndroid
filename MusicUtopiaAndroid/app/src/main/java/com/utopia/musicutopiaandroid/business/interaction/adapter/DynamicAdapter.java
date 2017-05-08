@@ -128,6 +128,7 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
 
     //图片内容处理
     private void convertImage(BaseViewHolder baseViewHolder, DynamicBean dynamicBean) {
+
         LinearLayout view = baseViewHolder.getView(R.id.imgs_id);
         view.removeAllViews();
         //处理图
