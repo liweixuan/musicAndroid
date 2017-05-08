@@ -97,7 +97,7 @@ public class DynamicFragment extends BaseFragment implements BGARefreshLayout.BG
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         ArrayList<DynamicBean> data = new ArrayList<>();
         data.add(new DynamicBean("name:1", ItemType.type_text));
-        data.add(new DynamicBean("name:2", ItemType.type_text));
+        data.add(new DynamicBean("name:2", ItemType.type_text_img));
         data.add(new DynamicBean("name:3", ItemType.type_text));
         data.add(new DynamicBean("name:1", ItemType.type_text));
         data.add(new DynamicBean("name:2", ItemType.type_text));

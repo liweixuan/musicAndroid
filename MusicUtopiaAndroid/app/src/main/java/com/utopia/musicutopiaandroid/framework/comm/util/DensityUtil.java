@@ -33,9 +33,6 @@ public class DensityUtil {
     }
 
 
-    public static int getImageWeidth(Context context, float pixels) {
-        return context.getResources().getDisplayMetrics().widthPixels - 66 - getDisplayMetrics(context, pixels);
-    }
 
     /**
      * 像素转化dip

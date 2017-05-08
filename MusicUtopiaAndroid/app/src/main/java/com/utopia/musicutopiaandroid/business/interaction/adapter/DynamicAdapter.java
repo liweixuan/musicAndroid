@@ -158,11 +158,15 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
         } else {
             baseViewHolder.setVisible(R.id.imgs_id, true);//显示
             if (num == 1) { //是一个 添加一张较大的图
-                ImageView bigImg = (ImageView) mLayoutInflater.inflate(R.layout.dynamic_big_img, null);
-                bigImg.setMaxHeight(400);
-                bigImg.setMaxWidth(400);
-                bigImg.setMinimumHeight(48);
-                bigImg.setMinimumWidth(48);
+                ImageView bigImg = new ImageView(mContext);
+                bigImg.setImageResource(R.mipmap.ic_launcher);
+//                bigImg = new ImageView(mContext);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                bigImg.setLayoutParams(lp);
+                bigImg.setMaxHeight(DensityUtil.dip2px(300));
+                bigImg.setMaxWidth(DensityUtil.dip2px(300));
+                bigImg.setMinimumHeight(DensityUtil.dip2px(148));
+                bigImg.setMinimumWidth(DensityUtil.dip2px(148));
                 view.addView(bigImg);
             } else {
                 if (num > 1 && num <= 9) {
@@ -177,6 +181,11 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
                     LinearLayout lastH = createImgs(view, 3, imgs.subList(0, 8));
                     //添加更多
                     View contain = mLayoutInflater.inflate(R.layout.dynamic_img_more, null);
+                    int screeWidth = DensityUtil.getDisplayWidth(mContext)/3-DensityUtil.dip2px(26);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    lp.width = screeWidth;
+                    lp.height = screeWidth;
+                    contain.setLayoutParams(lp);
                     TextView moreNum = (TextView) contain.findViewById(R.id.more_num_id);
                     moreNum.setText(String.format(mContext.getString(R.string.more_img), num - 9));
                     lastH.addView(contain);
@@ -189,6 +198,7 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
     private LinearLayout createHorLineart() {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout lt = new LinearLayout(mContext);
+        lp.bottomMargin = DensityUtil.dip2px(3);
         lt.setLayoutParams(lp);
         lt.setOrientation(LinearLayout.HORIZONTAL);
         lt.setGravity(Gravity.LEFT);
@@ -209,14 +219,19 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
         int hang = num / lieMax;//满行
         //添加满行
         LinearLayout lt = null;
+        int screeWidth = DensityUtil.getDisplayWidth(mContext)/3-DensityUtil.dip2px(26);
         for (int i = 0; i < hang; i++) {
             lt = createHorLineart();
             //添加图片
             for (int j = 0; j < lieMax; j++) {
-                View img = mLayoutInflater.inflate(R.layout.dynamic_img, null);
+                ImageView img = new ImageView(mContext);
+                img.setScaleType(ImageView.ScaleType.FIT_XY);
+                img.setImageResource(R.mipmap.ic_launcher);
+                img.setBackgroundColor(Color.RED);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                lp.width = DensityUtil.dip2px(160);
-                lp.height = DensityUtil.dip2px(160);
+                lp.width = screeWidth;
+                lp.height = screeWidth;
+                lp.rightMargin = DensityUtil.dip2px(3);
                 img.setLayoutParams(lp);
                 lt.addView(img);
             }
@@ -229,10 +244,14 @@ public class DynamicAdapter extends BaseMultiItemQuickAdapter<DynamicBean> {
         lt = createHorLineart();
         for (int i = 0; i < lastHang; i++) {
             //添加图片
-            View img = mLayoutInflater.inflate(R.layout.dynamic_img, null);
+            ImageView img = new ImageView(mContext);
+            img.setScaleType(ImageView.ScaleType.FIT_XY);
+            img.setImageResource(R.mipmap.ic_launcher);
+            img.setBackgroundColor(Color.RED);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            lp.width = DensityUtil.dip2px(160);
-            lp.height = DensityUtil.dip2px(160);
+            lp.width = screeWidth;
+            lp.height = screeWidth;
+            lp.rightMargin = DensityUtil.dip2px(3);
             img.setLayoutParams(lp);
             lt.addView(img);
         }

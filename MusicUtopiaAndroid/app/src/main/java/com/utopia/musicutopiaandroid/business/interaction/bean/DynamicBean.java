@@ -26,15 +26,15 @@ public class DynamicBean extends MultiItemEntity {
     public ArrayList<String> getImgs() {
         imgs = new ArrayList<>();
 //        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
-//        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
+        imgs.add("123");
         imgs.add("123");
         return imgs;
     }
